@@ -21,6 +21,8 @@ http://www.instructables.com/id/Migbot-I3-3D-Printer-Assembly-and-Use/		Assembly
 
 https://www.youtube.com/watch?v=dXj1OanewJ4 - YouTube video showing assembly of printer
 
+https://electronicgeektips.wordpress.com/new-prusa-i3-webpage/
+
 Have fun!!
 
 gm
