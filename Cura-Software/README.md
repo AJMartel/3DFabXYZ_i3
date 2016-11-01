@@ -5,3 +5,11 @@ Take the content of this directory and place it somewhere on your computer - the
 
 Once you have the software copied to a location then make a shortcut from the desktop to the migbot.bat file so
 you can start the CURA slicer software directly from the desktop if you wish.
+
+
+https://github.com/Ultimaker/Cura
+https://github.com/Ultimaker/CuraEngine
+https://github.com/Ultimaker/Uranium
+https://github.com/pyserial/pyserial
+
+https://ultimaker.com/en/products/cura-software
