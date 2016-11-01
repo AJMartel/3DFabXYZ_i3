@@ -23,6 +23,8 @@ https://www.youtube.com/watch?v=dXj1OanewJ4 - YouTube video showing assembly of 
 
 https://electronicgeektips.wordpress.com/new-prusa-i3-webpage/
 
+http://forums.reprap.org/read.php?406,507737
+
 Have fun!!
 
 gm
