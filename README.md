@@ -28,6 +28,12 @@ http://forums.reprap.org/read.php?406,507737
 
 http://www.pronterface.com/  - PrintRun
 
+http://reprap.org/wiki/Migbot_Prusa_i3 - AXMod
+https://github.com/AxMod3DPrint/Migbot-Firmware
+
+https://github.com/MarlinFirmware/Marlin/tree/RC
+
+
 
 
 
