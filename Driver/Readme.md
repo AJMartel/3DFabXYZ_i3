@@ -10,4 +10,4 @@ http://www.ftdichip.com/Support/Documents/InstallGuides.htm - FTDI installation 
 The above links are to the latest drivers and instructions to allow you to connect a computer to the 3D Printer through
 the USB interface.  All of the instructions have been tested and work properly with the printer.
 
-gm - Nov. 8 2015
+AJMartel - 2017 July 18
