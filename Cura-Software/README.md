@@ -8,8 +8,11 @@ you can start the CURA slicer software directly from the desktop if you wish.
 
 
 https://github.com/Ultimaker/Cura
+
 https://github.com/Ultimaker/CuraEngine
+
 https://github.com/Ultimaker/Uranium
+
 https://github.com/pyserial/pyserial
 
 https://ultimaker.com/en/products/cura-software
