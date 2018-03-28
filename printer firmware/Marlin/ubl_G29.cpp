@@ -206,7 +206,7 @@
    *
    *   P4    Phase 4    Fine tune the Mesh. The Delta Mesh Compensation System assumes the existence of
    *                    an LCD Panel. It is possible to fine tune the mesh without an LCD Panel using
-   *                    G42 and M421. See the UBL documentation for further details.
+   *                    G44 and M421. See the UBL documentation for further details.
    *
    *                    Phase 4 is meant to be used with G26 Mesh Validation to fine tune the mesh by direct editing
    *                    of Mesh Points. Raise and lower points to fine tune the mesh until it gives consistently reliable

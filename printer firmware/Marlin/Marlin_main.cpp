@@ -68,7 +68,7 @@
  * G32  - Undock sled (Z_PROBE_SLED only)
  * G33  - Delta Auto-Calibration (Requires DELTA_AUTO_CALIBRATION)
  * G38  - Probe in any direction using the Z_MIN_PROBE (Requires G38_PROBE_TARGET)
- * G42  - Coordinated move to a mesh point (Requires MESH_BED_LEVELING, AUTO_BED_LEVELING_BLINEAR, or AUTO_BED_LEVELING_UBL)
+ * G44  - Coordinated move to a mesh point (Requires MESH_BED_LEVELING, AUTO_BED_LEVELING_BLINEAR, or AUTO_BED_LEVELING_UBL)
  * G90  - Use Absolute Coordinates
  * G91  - Use Relative Coordinates
  * G92  - Set current position to coordinates given
@@ -6124,9 +6124,9 @@ void home_all_axes() { gcode_G28(true); }
 #if HAS_MESH
 
   /**
-   * G42: Move X & Y axes to mesh coordinates (I & J)
+   * G44: Move X & Y axes to mesh coordinates (I & J)
    */
-  inline void gcode_G42() {
+  inline void gcode_G44() {
     #if ENABLED(NO_MOTION_BEFORE_HOMING)
       if (axis_unhomed_error()) return;
     #endif
@@ -11732,7 +11732,7 @@ void process_parsed_command() {
 
       #if HAS_MESH
         case 42:
-          gcode_G42();
+          gcode_G44();
           break;
       #endif
 
