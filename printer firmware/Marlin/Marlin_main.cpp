@@ -11731,7 +11731,7 @@ void process_parsed_command() {
         break;
 
       #if HAS_MESH
-        case 42:
+        case 44:
           gcode_G44();
           break;
       #endif
