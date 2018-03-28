@@ -48,7 +48,7 @@
    * here we define this default string as the date where the latest release
    * version was tagged.
    */
-  #define STRING_DISTRIBUTION_DATE "2017-12-25 12:00"
+  #define STRING_DISTRIBUTION_DATE "2018-03-27 12:00"
 
   /**
    * Required minimum Configuration.h and Configuration_adv.h file versions.
@@ -83,12 +83,12 @@
   /**
    * Default generic printer UUID.
    */
-  #define DEFAULT_MACHINE_UUID "742aa994-101e-4d64-bb4e-83d93aae0747"
+  #define DEFAULT_MACHINE_UUID "33f3a111-81c0-4449-9a01-1b2c737aa701"
 
   /**
    * The WEBSITE_URL is the location where users can get more information such as
    * documentation about a specific Marlin release.
    */
-  #define WEBSITE_URL "http://marlinfw.org"
+  #define WEBSITE_URL "http://3DFabXYZ.com"
 
 #endif // USE_AUTOMATIC_VERSIONING

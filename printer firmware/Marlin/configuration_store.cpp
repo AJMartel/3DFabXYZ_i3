@@ -496,9 +496,9 @@ void MarlinSettings::postprocess() {
     #endif
 
     #if DISABLED(ULTIPANEL)
-      constexpr int lcd_preheat_hotend_temp[2] = { PREHEAT_1_TEMP_HOTEND, PREHEAT_2_TEMP_HOTEND },
-                    lcd_preheat_bed_temp[2] = { PREHEAT_1_TEMP_BED, PREHEAT_2_TEMP_BED },
-                    lcd_preheat_fan_speed[2] = { PREHEAT_1_FAN_SPEED, PREHEAT_2_FAN_SPEED };
+      constexpr int lcd_preheat_hotend_temp[7] = { PREHEAT_1_TEMP_HOTEND, PREHEAT_2_TEMP_HOTEND, PREHEAT_3_TEMP_HOTEND, PREHEAT_4_TEMP_HOTEND, PREHEAT_5_TEMP_HOTEND, PREHEAT_6_TEMP_HOTEND, PREHEAT_7_TEMP_HOTEND },
+                    lcd_preheat_bed_temp[7] = { PREHEAT_1_TEMP_BED, PREHEAT_2_TEMP_BED, PREHEAT_3_TEMP_BED, PREHEAT_4_TEMP_BED, PREHEAT_5_TEMP_BED, PREHEAT_6_TEMP_BED, PREHEAT_7_TEMP_BED },
+                    lcd_preheat_fan_speed[7] = { PREHEAT_1_FAN_SPEED, PREHEAT_2_FAN_SPEED, PREHEAT_3_FAN_SPEED, PREHEAT_4_FAN_SPEED, PREHEAT_5_FAN_SPEED, PREHEAT_6_FAN_SPEED, PREHEAT_7_FAN_SPEED };
     #endif
 
     EEPROM_WRITE(lcd_preheat_hotend_temp);
@@ -973,7 +973,7 @@ void MarlinSettings::postprocess() {
       //
 
       #if DISABLED(ULTIPANEL)
-        int lcd_preheat_hotend_temp[2], lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2];
+        int lcd_preheat_hotend_temp[7], lcd_preheat_bed_temp[7], lcd_preheat_fan_speed[7];
       #endif
       EEPROM_READ(lcd_preheat_hotend_temp); // 2 floats
       EEPROM_READ(lcd_preheat_bed_temp);    // 2 floats
@@ -1477,10 +1477,25 @@ void MarlinSettings::reset() {
   #if ENABLED(ULTIPANEL)
     lcd_preheat_hotend_temp[0] = PREHEAT_1_TEMP_HOTEND;
     lcd_preheat_hotend_temp[1] = PREHEAT_2_TEMP_HOTEND;
+    lcd_preheat_hotend_temp[2] = PREHEAT_3_TEMP_HOTEND;
+    lcd_preheat_hotend_temp[3] = PREHEAT_4_TEMP_HOTEND;
+    lcd_preheat_hotend_temp[4] = PREHEAT_5_TEMP_HOTEND;
+    lcd_preheat_hotend_temp[5] = PREHEAT_6_TEMP_HOTEND;
+    lcd_preheat_hotend_temp[6] = PREHEAT_7_TEMP_HOTEND;
     lcd_preheat_bed_temp[0] = PREHEAT_1_TEMP_BED;
     lcd_preheat_bed_temp[1] = PREHEAT_2_TEMP_BED;
+    lcd_preheat_bed_temp[2] = PREHEAT_3_TEMP_BED;
+    lcd_preheat_bed_temp[3] = PREHEAT_4_TEMP_BED;
+    lcd_preheat_bed_temp[4] = PREHEAT_5_TEMP_BED;
+    lcd_preheat_bed_temp[5] = PREHEAT_6_TEMP_BED;
+    lcd_preheat_bed_temp[6] = PREHEAT_7_TEMP_BED;          
     lcd_preheat_fan_speed[0] = PREHEAT_1_FAN_SPEED;
     lcd_preheat_fan_speed[1] = PREHEAT_2_FAN_SPEED;
+    lcd_preheat_fan_speed[2] = PREHEAT_3_FAN_SPEED;
+    lcd_preheat_fan_speed[3] = PREHEAT_4_FAN_SPEED;
+    lcd_preheat_fan_speed[4] = PREHEAT_5_FAN_SPEED;
+    lcd_preheat_fan_speed[5] = PREHEAT_6_FAN_SPEED;
+    lcd_preheat_fan_speed[6] = PREHEAT_7_FAN_SPEED;           
   #endif
 
   #if ENABLED(PIDTEMP)

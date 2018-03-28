@@ -61,7 +61,7 @@
 #endif
 
 // Initialized by settings.load()
-int16_t lcd_preheat_hotend_temp[2], lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2];
+int16_t lcd_preheat_hotend_temp[7], lcd_preheat_bed_temp[7], lcd_preheat_fan_speed[7];
 
 #if ENABLED(FILAMENT_LCD_DISPLAY) && ENABLED(SDSUPPORT)
   millis_t previous_lcd_status_ms = 0;
@@ -172,6 +172,11 @@ uint16_t max_display_update_time = 0;
   void lcd_control_temperature_menu();
   void lcd_control_temperature_preheat_material1_settings_menu();
   void lcd_control_temperature_preheat_material2_settings_menu();
+  void lcd_control_temperature_preheat_material3_settings_menu();
+  void lcd_control_temperature_preheat_material4_settings_menu();
+  void lcd_control_temperature_preheat_material5_settings_menu();
+  void lcd_control_temperature_preheat_material6_settings_menu();
+  void lcd_control_temperature_preheat_material7_settings_menu();
   void lcd_control_motion_menu();
   void lcd_control_filament_menu();
 
@@ -922,6 +927,22 @@ void kill_screen(const char* lcd_msg) {
     #if defined(USER_DESC_5) && defined(USER_GCODE_5)
       void lcd_user_gcode_5() { _lcd_user_gcode(PSTR(USER_GCODE_5 _DONE_SCRIPT)); }
     #endif
+    #if defined(USER_DESC_6) && defined(USER_GCODE_6)
+      void lcd_user_gcode_6() { _lcd_user_gcode(PSTR(USER_GCODE_6 _DONE_SCRIPT)); }
+    #endif
+    #if defined(USER_DESC_7) && defined(USER_GCODE_7)
+      void lcd_user_gcode_7() { _lcd_user_gcode(PSTR(USER_GCODE_7 _DONE_SCRIPT)); }
+    #endif
+    #if defined(USER_DESC_8) && defined(USER_GCODE_8)
+      void lcd_user_gcode_8() { _lcd_user_gcode(PSTR(USER_GCODE_8 _DONE_SCRIPT)); }
+    #endif
+    #if defined(USER_DESC_9) && defined(USER_GCODE_9)
+      void lcd_user_gcode_9() { _lcd_user_gcode(PSTR(USER_GCODE_9 _DONE_SCRIPT)); }
+    #endif
+    #if defined(USER_DESC_10) && defined(USER_GCODE_10)
+      void lcd_user_gcode_10() { _lcd_user_gcode(PSTR(USER_GCODE_10 _DONE_SCRIPT)); }
+    #endif
+
 
     void _lcd_user_menu() {
       START_MENU();
@@ -940,6 +961,21 @@ void kill_screen(const char* lcd_msg) {
       #endif
       #if defined(USER_DESC_5) && defined(USER_GCODE_5)
         MENU_ITEM(function, USER_DESC_5, lcd_user_gcode_5);
+      #endif
+      #if defined(USER_DESC_6) && defined(USER_GCODE_6)
+        MENU_ITEM(function, USER_DESC_6, lcd_user_gcode_6);
+      #endif
+      #if defined(USER_DESC_7) && defined(USER_GCODE_7)
+        MENU_ITEM(function, USER_DESC_7, lcd_user_gcode_7);
+      #endif
+      #if defined(USER_DESC_8) && defined(USER_GCODE_8)
+        MENU_ITEM(function, USER_DESC_8, lcd_user_gcode_8);
+      #endif
+      #if defined(USER_DESC_9) && defined(USER_GCODE_9)
+        MENU_ITEM(function, USER_DESC_9, lcd_user_gcode_9);
+      #endif
+      #if defined(USER_DESC_10) && defined(USER_GCODE_10)
+        MENU_ITEM(function, USER_DESC_10, lcd_user_gcode_10);
       #endif
       END_MENU();
     }
@@ -1470,39 +1506,89 @@ void kill_screen(const char* lcd_msg) {
   #if TEMP_SENSOR_0 != 0
     void lcd_preheat_m1_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[0], -1, lcd_preheat_fan_speed[0]); }
     void lcd_preheat_m2_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[1], -1, lcd_preheat_fan_speed[1]); }
+    void lcd_preheat_m3_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[2], -1, lcd_preheat_fan_speed[2]); }
+    void lcd_preheat_m4_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[3], -1, lcd_preheat_fan_speed[3]); }
+    void lcd_preheat_m5_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[4], -1, lcd_preheat_fan_speed[4]); }
+    void lcd_preheat_m6_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[5], -1, lcd_preheat_fan_speed[5]); }
+    void lcd_preheat_m7_e0_only() { _lcd_preheat(0, lcd_preheat_hotend_temp[6], -1, lcd_preheat_fan_speed[6]); }
     #if TEMP_SENSOR_BED != 0
       void lcd_preheat_m1_e0() { _lcd_preheat(0, lcd_preheat_hotend_temp[0], lcd_preheat_bed_temp[0], lcd_preheat_fan_speed[0]); }
       void lcd_preheat_m2_e0() { _lcd_preheat(0, lcd_preheat_hotend_temp[1], lcd_preheat_bed_temp[1], lcd_preheat_fan_speed[1]); }
+      void lcd_preheat_m3_e0() { _lcd_preheat(0, lcd_preheat_hotend_temp[2], lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2]); }
+      void lcd_preheat_m4_e0() { _lcd_preheat(0, lcd_preheat_hotend_temp[3], lcd_preheat_bed_temp[3], lcd_preheat_fan_speed[3]); }
+      void lcd_preheat_m5_e0() { _lcd_preheat(0, lcd_preheat_hotend_temp[4], lcd_preheat_bed_temp[4], lcd_preheat_fan_speed[4]); }
+      void lcd_preheat_m6_e0() { _lcd_preheat(0, lcd_preheat_hotend_temp[5], lcd_preheat_bed_temp[5], lcd_preheat_fan_speed[5]); }
+      void lcd_preheat_m7_e0() { _lcd_preheat(0, lcd_preheat_hotend_temp[6], lcd_preheat_bed_temp[6], lcd_preheat_fan_speed[6]); }
     #endif
   #endif
 
   #if HOTENDS > 1
     void lcd_preheat_m1_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[0], -1, lcd_preheat_fan_speed[0]); }
     void lcd_preheat_m2_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[1], -1, lcd_preheat_fan_speed[1]); }
+    void lcd_preheat_m3_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[2], -1, lcd_preheat_fan_speed[2]); }
+    void lcd_preheat_m4_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[3], -1, lcd_preheat_fan_speed[3]); }
+    void lcd_preheat_m5_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[4], -1, lcd_preheat_fan_speed[4]); }
+    void lcd_preheat_m6_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[5], -1, lcd_preheat_fan_speed[5]); }
+    void lcd_preheat_m7_e1_only() { _lcd_preheat(1, lcd_preheat_hotend_temp[6], -1, lcd_preheat_fan_speed[6]); }
     #if TEMP_SENSOR_BED != 0
       void lcd_preheat_m1_e1() { _lcd_preheat(1, lcd_preheat_hotend_temp[0], lcd_preheat_bed_temp[0], lcd_preheat_fan_speed[0]); }
       void lcd_preheat_m2_e1() { _lcd_preheat(1, lcd_preheat_hotend_temp[1], lcd_preheat_bed_temp[1], lcd_preheat_fan_speed[1]); }
+      void lcd_preheat_m3_e1() { _lcd_preheat(1, lcd_preheat_hotend_temp[2], lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2]); }
+      void lcd_preheat_m4_e1() { _lcd_preheat(1, lcd_preheat_hotend_temp[3], lcd_preheat_bed_temp[3], lcd_preheat_fan_speed[3]); }
+      void lcd_preheat_m5_e1() { _lcd_preheat(1, lcd_preheat_hotend_temp[4], lcd_preheat_bed_temp[4], lcd_preheat_fan_speed[4]); }
+      void lcd_preheat_m6_e1() { _lcd_preheat(1, lcd_preheat_hotend_temp[5], lcd_preheat_bed_temp[5], lcd_preheat_fan_speed[5]); }
+      void lcd_preheat_m7_e1() { _lcd_preheat(1, lcd_preheat_hotend_temp[6], lcd_preheat_bed_temp[6], lcd_preheat_fan_speed[6]); }
     #endif
     #if HOTENDS > 2
       void lcd_preheat_m1_e2_only() { _lcd_preheat(2, lcd_preheat_hotend_temp[0], -1, lcd_preheat_fan_speed[0]); }
       void lcd_preheat_m2_e2_only() { _lcd_preheat(2, lcd_preheat_hotend_temp[1], -1, lcd_preheat_fan_speed[1]); }
+      void lcd_preheat_m3_e2_only() { _lcd_preheat(2, lcd_preheat_hotend_temp[2], -1, lcd_preheat_fan_speed[2]); }
+      void lcd_preheat_m4_e2_only() { _lcd_preheat(2, lcd_preheat_hotend_temp[3], -1, lcd_preheat_fan_speed[3]); }
+      void lcd_preheat_m5_e2_only() { _lcd_preheat(2, lcd_preheat_hotend_temp[4], -1, lcd_preheat_fan_speed[4]); }
+      void lcd_preheat_m6_e2_only() { _lcd_preheat(2, lcd_preheat_hotend_temp[5], -1, lcd_preheat_fan_speed[5]); }
+      void lcd_preheat_m7_e2_only() { _lcd_preheat(2, lcd_preheat_hotend_temp[6], -1, lcd_preheat_fan_speed[6]); }
       #if TEMP_SENSOR_BED != 0
         void lcd_preheat_m1_e2() { _lcd_preheat(2, lcd_preheat_hotend_temp[0], lcd_preheat_bed_temp[0], lcd_preheat_fan_speed[0]); }
         void lcd_preheat_m2_e2() { _lcd_preheat(2, lcd_preheat_hotend_temp[1], lcd_preheat_bed_temp[1], lcd_preheat_fan_speed[1]); }
+        void lcd_preheat_m3_e2() { _lcd_preheat(2, lcd_preheat_hotend_temp[2], lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2]); }
+        void lcd_preheat_m4_e2() { _lcd_preheat(2, lcd_preheat_hotend_temp[3], lcd_preheat_bed_temp[3], lcd_preheat_fan_speed[3]); }
+        void lcd_preheat_m5_e2() { _lcd_preheat(2, lcd_preheat_hotend_temp[4], lcd_preheat_bed_temp[4], lcd_preheat_fan_speed[4]); }
+        void lcd_preheat_m6_e2() { _lcd_preheat(2, lcd_preheat_hotend_temp[5], lcd_preheat_bed_temp[5], lcd_preheat_fan_speed[5]); }
+        void lcd_preheat_m7_e2() { _lcd_preheat(2, lcd_preheat_hotend_temp[6], lcd_preheat_bed_temp[6], lcd_preheat_fan_speed[6]); }
       #endif
       #if HOTENDS > 3
         void lcd_preheat_m1_e3_only() { _lcd_preheat(3, lcd_preheat_hotend_temp[0], -1, lcd_preheat_fan_speed[0]); }
         void lcd_preheat_m2_e3_only() { _lcd_preheat(3, lcd_preheat_hotend_temp[1], -1, lcd_preheat_fan_speed[1]); }
+        void lcd_preheat_m3_e3_only() { _lcd_preheat(3, lcd_preheat_hotend_temp[2], -1, lcd_preheat_fan_speed[2]); }
+        void lcd_preheat_m4_e3_only() { _lcd_preheat(3, lcd_preheat_hotend_temp[3], -1, lcd_preheat_fan_speed[3]); }
+        void lcd_preheat_m5_e3_only() { _lcd_preheat(3, lcd_preheat_hotend_temp[4], -1, lcd_preheat_fan_speed[4]); }
+        void lcd_preheat_m6_e3_only() { _lcd_preheat(3, lcd_preheat_hotend_temp[5], -1, lcd_preheat_fan_speed[5]); }
+        void lcd_preheat_m7_e3_only() { _lcd_preheat(3, lcd_preheat_hotend_temp[6], -1, lcd_preheat_fan_speed[6]); }
         #if TEMP_SENSOR_BED != 0
           void lcd_preheat_m1_e3() { _lcd_preheat(3, lcd_preheat_hotend_temp[0], lcd_preheat_bed_temp[0], lcd_preheat_fan_speed[0]); }
           void lcd_preheat_m2_e3() { _lcd_preheat(3, lcd_preheat_hotend_temp[1], lcd_preheat_bed_temp[1], lcd_preheat_fan_speed[1]); }
+          void lcd_preheat_m3_e3() { _lcd_preheat(3, lcd_preheat_hotend_temp[2], lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2]); }
+          void lcd_preheat_m4_e3() { _lcd_preheat(3, lcd_preheat_hotend_temp[3], lcd_preheat_bed_temp[3], lcd_preheat_fan_speed[3]); }
+          void lcd_preheat_m5_e3() { _lcd_preheat(3, lcd_preheat_hotend_temp[4], lcd_preheat_bed_temp[4], lcd_preheat_fan_speed[4]); }
+          void lcd_preheat_m6_e3() { _lcd_preheat(3, lcd_preheat_hotend_temp[5], lcd_preheat_bed_temp[5], lcd_preheat_fan_speed[5]); }
+          void lcd_preheat_m7_e3() { _lcd_preheat(3, lcd_preheat_hotend_temp[6], lcd_preheat_bed_temp[6], lcd_preheat_fan_speed[6]); }
         #endif
         #if HOTENDS > 4
           void lcd_preheat_m1_e4_only() { _lcd_preheat(4, lcd_preheat_hotend_temp[0], -1, lcd_preheat_fan_speed[0]); }
           void lcd_preheat_m2_e4_only() { _lcd_preheat(4, lcd_preheat_hotend_temp[1], -1, lcd_preheat_fan_speed[1]); }
+          void lcd_preheat_m3_e4_only() { _lcd_preheat(4, lcd_preheat_hotend_temp[2], -1, lcd_preheat_fan_speed[2]); }
+          void lcd_preheat_m4_e4_only() { _lcd_preheat(4, lcd_preheat_hotend_temp[3], -1, lcd_preheat_fan_speed[3]); }
+          void lcd_preheat_m5_e4_only() { _lcd_preheat(4, lcd_preheat_hotend_temp[4], -1, lcd_preheat_fan_speed[4]); }
+          void lcd_preheat_m6_e4_only() { _lcd_preheat(4, lcd_preheat_hotend_temp[5], -1, lcd_preheat_fan_speed[5]); }
+          void lcd_preheat_m7_e4_only() { _lcd_preheat(4, lcd_preheat_hotend_temp[6], -1, lcd_preheat_fan_speed[6]); }
           #if TEMP_SENSOR_BED != 0
             void lcd_preheat_m1_e4() { _lcd_preheat(4, lcd_preheat_hotend_temp[0], lcd_preheat_bed_temp[0], lcd_preheat_fan_speed[0]); }
             void lcd_preheat_m2_e4() { _lcd_preheat(4, lcd_preheat_hotend_temp[1], lcd_preheat_bed_temp[1], lcd_preheat_fan_speed[1]); }
+            void lcd_preheat_m3_e4() { _lcd_preheat(4, lcd_preheat_hotend_temp[2], lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2]); }
+            void lcd_preheat_m4_e4() { _lcd_preheat(4, lcd_preheat_hotend_temp[3], lcd_preheat_bed_temp[3], lcd_preheat_fan_speed[3]); }
+            void lcd_preheat_m5_e4() { _lcd_preheat(4, lcd_preheat_hotend_temp[4], lcd_preheat_bed_temp[4], lcd_preheat_fan_speed[4]); }
+            void lcd_preheat_m6_e4() { _lcd_preheat(4, lcd_preheat_hotend_temp[5], lcd_preheat_bed_temp[5], lcd_preheat_fan_speed[5]); }
+            void lcd_preheat_m7_e4() { _lcd_preheat(4, lcd_preheat_hotend_temp[6], lcd_preheat_bed_temp[6], lcd_preheat_fan_speed[6]); }
           #endif
         #endif // HOTENDS > 4
       #endif // HOTENDS > 3
@@ -1546,12 +1632,112 @@ void kill_screen(const char* lcd_msg) {
         lcd_preheat_m2_e0_only();
       #endif
     }
+    void lcd_preheat_m3_all() {
+      #if HOTENDS > 1
+        thermalManager.setTargetHotend(lcd_preheat_hotend_temp[2], 1);
+        #if HOTENDS > 2
+          thermalManager.setTargetHotend(lcd_preheat_hotend_temp[2], 2);
+          #if HOTENDS > 3
+            thermalManager.setTargetHotend(lcd_preheat_hotend_temp[2], 3);
+            #if HOTENDS > 4
+              thermalManager.setTargetHotend(lcd_preheat_hotend_temp[2], 4);
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        lcd_preheat_m3_e0();
+      #else
+        lcd_preheat_m3_e0_only();
+      #endif
+    }
+    void lcd_preheat_m4_all() {
+      #if HOTENDS > 1
+        thermalManager.setTargetHotend(lcd_preheat_hotend_temp[3], 1);
+        #if HOTENDS > 2
+          thermalManager.setTargetHotend(lcd_preheat_hotend_temp[3], 2);
+          #if HOTENDS > 3
+            thermalManager.setTargetHotend(lcd_preheat_hotend_temp[3], 3);
+            #if HOTENDS > 4
+              thermalManager.setTargetHotend(lcd_preheat_hotend_temp[3], 4);
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        lcd_preheat_m4_e0();
+      #else
+        lcd_preheat_m4_e0_only();
+      #endif
+    }
+    void lcd_preheat_m5_all() {
+      #if HOTENDS > 1
+        thermalManager.setTargetHotend(lcd_preheat_hotend_temp[4], 1);
+        #if HOTENDS > 2
+          thermalManager.setTargetHotend(lcd_preheat_hotend_temp[4], 2);
+          #if HOTENDS > 3
+            thermalManager.setTargetHotend(lcd_preheat_hotend_temp[4], 3);
+            #if HOTENDS > 4
+              thermalManager.setTargetHotend(lcd_preheat_hotend_temp[4], 4);
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        lcd_preheat_m5_e0();
+      #else
+        lcd_preheat_m5_e0_only();
+      #endif
+    }
+    void lcd_preheat_m6_all() {
+      #if HOTENDS > 1
+        thermalManager.setTargetHotend(lcd_preheat_hotend_temp[5], 1);
+        #if HOTENDS > 2
+          thermalManager.setTargetHotend(lcd_preheat_hotend_temp[5], 2);
+          #if HOTENDS > 3
+            thermalManager.setTargetHotend(lcd_preheat_hotend_temp[5], 3);
+            #if HOTENDS > 4
+              thermalManager.setTargetHotend(lcd_preheat_hotend_temp[5], 4);
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        lcd_preheat_m6_e0();
+      #else
+        lcd_preheat_m6_e0_only();
+      #endif
+    }
+    void lcd_preheat_m7_all() {
+      #if HOTENDS > 1
+        thermalManager.setTargetHotend(lcd_preheat_hotend_temp[6], 1);
+        #if HOTENDS > 2
+          thermalManager.setTargetHotend(lcd_preheat_hotend_temp[6], 2);
+          #if HOTENDS > 3
+            thermalManager.setTargetHotend(lcd_preheat_hotend_temp[6], 3);
+            #if HOTENDS > 4
+              thermalManager.setTargetHotend(lcd_preheat_hotend_temp[6], 4);
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        lcd_preheat_m7_e0();
+      #else
+        lcd_preheat_m7_e0_only();
+      #endif
+    }
 
   #endif // HOTENDS > 1
 
   #if TEMP_SENSOR_BED != 0
     void lcd_preheat_m1_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[0], lcd_preheat_fan_speed[0]); }
     void lcd_preheat_m2_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[1], lcd_preheat_fan_speed[1]); }
+    void lcd_preheat_m3_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[2], lcd_preheat_fan_speed[2]); }
+    void lcd_preheat_m4_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[3], lcd_preheat_fan_speed[3]); }
+    void lcd_preheat_m5_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[4], lcd_preheat_fan_speed[4]); }
+    void lcd_preheat_m6_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[5], lcd_preheat_fan_speed[5]); }
+    void lcd_preheat_m7_bedonly() { _lcd_preheat(0, 0, lcd_preheat_bed_temp[6], lcd_preheat_fan_speed[6]); }
   #endif
 
   #if TEMP_SENSOR_0 != 0 && (TEMP_SENSOR_1 != 0 || TEMP_SENSOR_2 != 0 || TEMP_SENSOR_3 != 0 || TEMP_SENSOR_4 != 0 || TEMP_SENSOR_BED != 0)
@@ -1656,6 +1842,266 @@ void kill_screen(const char* lcd_msg) {
       #endif // HOTENDS > 1
       #if TEMP_SENSOR_BED != 0
         MENU_ITEM(function, MSG_PREHEAT_2_BEDONLY, lcd_preheat_m2_bedonly);
+      #endif
+      END_MENU();
+    }
+
+    void lcd_preheat_m3_menu() {
+      START_MENU();
+      MENU_BACK(MSG_PREPARE);
+      #if HOTENDS == 1
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_3, lcd_preheat_m3_e0);
+          MENU_ITEM(function, MSG_PREHEAT_3_END, lcd_preheat_m3_e0_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_3, lcd_preheat_m3_e0_only);
+        #endif
+      #else
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H1, lcd_preheat_m3_e0);
+          MENU_ITEM(function, MSG_PREHEAT_3_END " " MSG_E1, lcd_preheat_m3_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H2, lcd_preheat_m3_e1);
+          MENU_ITEM(function, MSG_PREHEAT_3_END " " MSG_E2, lcd_preheat_m3_e1_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H1, lcd_preheat_m3_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H2, lcd_preheat_m3_e1_only);
+        #endif
+        #if HOTENDS > 2
+          #if TEMP_SENSOR_BED != 0
+            MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H3, lcd_preheat_m3_e2);
+            MENU_ITEM(function, MSG_PREHEAT_3_END " " MSG_E3, lcd_preheat_m3_e2_only);
+          #else
+            MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H3, lcd_preheat_m3_e2_only);
+          #endif
+          #if HOTENDS > 3
+            #if TEMP_SENSOR_BED != 0
+              MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H4, lcd_preheat_m3_e3);
+              MENU_ITEM(function, MSG_PREHEAT_3_END " " MSG_E4, lcd_preheat_m3_e3_only);
+            #else
+              MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H4, lcd_preheat_m3_e3_only);
+            #endif
+            #if HOTENDS > 4
+              #if TEMP_SENSOR_BED != 0
+                MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H5, lcd_preheat_m3_e4);
+                MENU_ITEM(function, MSG_PREHEAT_3_END " " MSG_E5, lcd_preheat_m3_e4_only);
+              #else
+                MENU_ITEM(function, MSG_PREHEAT_3_N MSG_H5, lcd_preheat_m3_e4_only);
+              #endif
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+        MENU_ITEM(function, MSG_PREHEAT_3_ALL, lcd_preheat_m3_all);
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        MENU_ITEM(function, MSG_PREHEAT_3_BEDONLY, lcd_preheat_m3_bedonly);
+      #endif
+      END_MENU();
+    }
+
+    void lcd_preheat_m4_menu() {
+      START_MENU();
+      MENU_BACK(MSG_PREPARE);
+      #if HOTENDS == 1
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_4, lcd_preheat_m4_e0);
+          MENU_ITEM(function, MSG_PREHEAT_4_END, lcd_preheat_m4_e0_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_4, lcd_preheat_m4_e0_only);
+        #endif
+      #else
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H1, lcd_preheat_m4_e0);
+          MENU_ITEM(function, MSG_PREHEAT_4_END " " MSG_E1, lcd_preheat_m4_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H2, lcd_preheat_m4_e1);
+          MENU_ITEM(function, MSG_PREHEAT_4_END " " MSG_E2, lcd_preheat_m4_e1_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H1, lcd_preheat_m4_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H2, lcd_preheat_m4_e1_only);
+        #endif
+        #if HOTENDS > 2
+          #if TEMP_SENSOR_BED != 0
+            MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H3, lcd_preheat_m4_e2);
+            MENU_ITEM(function, MSG_PREHEAT_4_END " " MSG_E3, lcd_preheat_m4_e2_only);
+          #else
+            MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H3, lcd_preheat_m4_e2_only);
+          #endif
+          #if HOTENDS > 3
+            #if TEMP_SENSOR_BED != 0
+              MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H4, lcd_preheat_m4_e3);
+              MENU_ITEM(function, MSG_PREHEAT_4_END " " MSG_E4, lcd_preheat_m4_e3_only);
+            #else
+              MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H4, lcd_preheat_m4_e3_only);
+            #endif
+            #if HOTENDS > 4
+              #if TEMP_SENSOR_BED != 0
+                MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H5, lcd_preheat_m4_e4);
+                MENU_ITEM(function, MSG_PREHEAT_4_END " " MSG_E5, lcd_preheat_m4_e4_only);
+              #else
+                MENU_ITEM(function, MSG_PREHEAT_4_N MSG_H5, lcd_preheat_m4_e4_only);
+              #endif
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+        MENU_ITEM(function, MSG_PREHEAT_4_ALL, lcd_preheat_m4_all);
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        MENU_ITEM(function, MSG_PREHEAT_4_BEDONLY, lcd_preheat_m4_bedonly);
+      #endif
+      END_MENU();
+    }
+
+    void lcd_preheat_m5_menu() {
+      START_MENU();
+      MENU_BACK(MSG_PREPARE);
+      #if HOTENDS == 1
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_5, lcd_preheat_m5_e0);
+          MENU_ITEM(function, MSG_PREHEAT_5_END, lcd_preheat_m5_e0_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_5, lcd_preheat_m5_e0_only);
+        #endif
+      #else
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H1, lcd_preheat_m5_e0);
+          MENU_ITEM(function, MSG_PREHEAT_5_END " " MSG_E1, lcd_preheat_m5_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H2, lcd_preheat_m5_e1);
+          MENU_ITEM(function, MSG_PREHEAT_5_END " " MSG_E2, lcd_preheat_m5_e1_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H1, lcd_preheat_m5_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H2, lcd_preheat_m5_e1_only);
+        #endif
+        #if HOTENDS > 2
+          #if TEMP_SENSOR_BED != 0
+            MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H3, lcd_preheat_m5_e2);
+            MENU_ITEM(function, MSG_PREHEAT_5_END " " MSG_E3, lcd_preheat_m5_e2_only);
+          #else
+            MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H3, lcd_preheat_m5_e2_only);
+          #endif
+          #if HOTENDS > 3
+            #if TEMP_SENSOR_BED != 0
+              MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H4, lcd_preheat_m5_e3);
+              MENU_ITEM(function, MSG_PREHEAT_5_END " " MSG_E4, lcd_preheat_m5_e3_only);
+            #else
+              MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H4, lcd_preheat_m5_e3_only);
+            #endif
+            #if HOTENDS > 4
+              #if TEMP_SENSOR_BED != 0
+                MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H5, lcd_preheat_m5_e4);
+                MENU_ITEM(function, MSG_PREHEAT_5_END " " MSG_E5, lcd_preheat_m5_e4_only);
+              #else
+                MENU_ITEM(function, MSG_PREHEAT_5_N MSG_H5, lcd_preheat_m5_e4_only);
+              #endif
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+        MENU_ITEM(function, MSG_PREHEAT_5_ALL, lcd_preheat_m5_all);
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        MENU_ITEM(function, MSG_PREHEAT_5_BEDONLY, lcd_preheat_m5_bedonly);
+      #endif
+      END_MENU();
+    }
+
+    void lcd_preheat_m6_menu() {
+      START_MENU();
+      MENU_BACK(MSG_PREPARE);
+      #if HOTENDS == 1
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_6, lcd_preheat_m6_e0);
+          MENU_ITEM(function, MSG_PREHEAT_6_END, lcd_preheat_m6_e0_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_6, lcd_preheat_m6_e0_only);
+        #endif
+      #else
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H1, lcd_preheat_m6_e0);
+          MENU_ITEM(function, MSG_PREHEAT_6_END " " MSG_E1, lcd_preheat_m6_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H2, lcd_preheat_m6_e1);
+          MENU_ITEM(function, MSG_PREHEAT_6_END " " MSG_E2, lcd_preheat_m6_e1_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H1, lcd_preheat_m6_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H2, lcd_preheat_m6_e1_only);
+        #endif
+        #if HOTENDS > 2
+          #if TEMP_SENSOR_BED != 0
+            MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H3, lcd_preheat_m6_e2);
+            MENU_ITEM(function, MSG_PREHEAT_6_END " " MSG_E3, lcd_preheat_m6_e2_only);
+          #else
+            MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H3, lcd_preheat_m6_e2_only);
+          #endif
+          #if HOTENDS > 3
+            #if TEMP_SENSOR_BED != 0
+              MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H4, lcd_preheat_m6_e3);
+              MENU_ITEM(function, MSG_PREHEAT_6_END " " MSG_E4, lcd_preheat_m6_e3_only);
+            #else
+              MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H4, lcd_preheat_m6_e3_only);
+            #endif
+            #if HOTENDS > 4
+              #if TEMP_SENSOR_BED != 0
+                MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H5, lcd_preheat_m6_e4);
+                MENU_ITEM(function, MSG_PREHEAT_6_END " " MSG_E5, lcd_preheat_m6_e4_only);
+              #else
+                MENU_ITEM(function, MSG_PREHEAT_6_N MSG_H5, lcd_preheat_m6_e4_only);
+              #endif
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+        MENU_ITEM(function, MSG_PREHEAT_6_ALL, lcd_preheat_m6_all);
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        MENU_ITEM(function, MSG_PREHEAT_6_BEDONLY, lcd_preheat_m6_bedonly);
+      #endif
+      END_MENU();
+    }
+
+    void lcd_preheat_m7_menu() {
+      START_MENU();
+      MENU_BACK(MSG_PREPARE);
+      #if HOTENDS == 1
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_7, lcd_preheat_m7_e0);
+          MENU_ITEM(function, MSG_PREHEAT_7_END, lcd_preheat_m7_e0_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_7, lcd_preheat_m7_e0_only);
+        #endif
+      #else
+        #if TEMP_SENSOR_BED != 0
+          MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H1, lcd_preheat_m7_e0);
+          MENU_ITEM(function, MSG_PREHEAT_7_END " " MSG_E1, lcd_preheat_m7_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H2, lcd_preheat_m7_e1);
+          MENU_ITEM(function, MSG_PREHEAT_7_END " " MSG_E2, lcd_preheat_m7_e1_only);
+        #else
+          MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H1, lcd_preheat_m7_e0_only);
+          MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H2, lcd_preheat_m7_e1_only);
+        #endif
+        #if HOTENDS > 2
+          #if TEMP_SENSOR_BED != 0
+            MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H3, lcd_preheat_m7_e2);
+            MENU_ITEM(function, MSG_PREHEAT_7_END " " MSG_E3, lcd_preheat_m7_e2_only);
+          #else
+            MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H3, lcd_preheat_m7_e2_only);
+          #endif
+          #if HOTENDS > 3
+            #if TEMP_SENSOR_BED != 0
+              MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H4, lcd_preheat_m7_e3);
+              MENU_ITEM(function, MSG_PREHEAT_7_END " " MSG_E4, lcd_preheat_m7_e3_only);
+            #else
+              MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H4, lcd_preheat_m7_e3_only);
+            #endif
+            #if HOTENDS > 4
+              #if TEMP_SENSOR_BED != 0
+                MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H5, lcd_preheat_m7_e4);
+                MENU_ITEM(function, MSG_PREHEAT_7_END " " MSG_E5, lcd_preheat_m7_e4_only);
+              #else
+                MENU_ITEM(function, MSG_PREHEAT_7_N MSG_H5, lcd_preheat_m7_e4_only);
+              #endif
+            #endif // HOTENDS > 4
+          #endif // HOTENDS > 3
+        #endif // HOTENDS > 2
+        MENU_ITEM(function, MSG_PREHEAT_7_ALL, lcd_preheat_m7_all);
+      #endif // HOTENDS > 1
+      #if TEMP_SENSOR_BED != 0
+        MENU_ITEM(function, MSG_PREHEAT_7_BEDONLY, lcd_preheat_m7_bedonly);
       #endif
       END_MENU();
     }
@@ -2601,9 +3047,19 @@ void kill_screen(const char* lcd_msg) {
       #if TEMP_SENSOR_1 != 0 || TEMP_SENSOR_2 != 0 || TEMP_SENSOR_3 != 0 || TEMP_SENSOR_4 != 0 || TEMP_SENSOR_BED != 0
         MENU_ITEM(submenu, MSG_PREHEAT_1, lcd_preheat_m1_menu);
         MENU_ITEM(submenu, MSG_PREHEAT_2, lcd_preheat_m2_menu);
+        MENU_ITEM(submenu, MSG_PREHEAT_3, lcd_preheat_m3_menu);
+        MENU_ITEM(submenu, MSG_PREHEAT_4, lcd_preheat_m4_menu);
+        MENU_ITEM(submenu, MSG_PREHEAT_5, lcd_preheat_m5_menu);
+        MENU_ITEM(submenu, MSG_PREHEAT_6, lcd_preheat_m6_menu);
+        MENU_ITEM(submenu, MSG_PREHEAT_7, lcd_preheat_m7_menu);
       #else
         MENU_ITEM(function, MSG_PREHEAT_1, lcd_preheat_m1_e0_only);
         MENU_ITEM(function, MSG_PREHEAT_2, lcd_preheat_m2_e0_only);
+        MENU_ITEM(function, MSG_PREHEAT_3, lcd_preheat_m3_e0_only);
+        MENU_ITEM(function, MSG_PREHEAT_4, lcd_preheat_m4_e0_only);
+        MENU_ITEM(function, MSG_PREHEAT_5, lcd_preheat_m5_e0_only);
+        MENU_ITEM(function, MSG_PREHEAT_6, lcd_preheat_m6_e0_only);
+        MENU_ITEM(function, MSG_PREHEAT_7, lcd_preheat_m7_e0_only);
       #endif
 
     #endif // TEMP_SENSOR_0 != 0
@@ -3366,14 +3822,15 @@ void kill_screen(const char* lcd_msg) {
     #endif // PIDTEMP
 
     //
-    // Preheat Material 1 conf
+    // Preheat Materials conf
     //
     MENU_ITEM(submenu, MSG_PREHEAT_1_SETTINGS, lcd_control_temperature_preheat_material1_settings_menu);
-
-    //
-    // Preheat Material 2 conf
-    //
     MENU_ITEM(submenu, MSG_PREHEAT_2_SETTINGS, lcd_control_temperature_preheat_material2_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_3_SETTINGS, lcd_control_temperature_preheat_material3_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_4_SETTINGS, lcd_control_temperature_preheat_material4_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_5_SETTINGS, lcd_control_temperature_preheat_material5_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_6_SETTINGS, lcd_control_temperature_preheat_material6_settings_menu);
+    MENU_ITEM(submenu, MSG_PREHEAT_7_SETTINGS, lcd_control_temperature_preheat_material7_settings_menu);
     END_MENU();
   }
 
@@ -3415,14 +3872,12 @@ void kill_screen(const char* lcd_msg) {
    *
    */
   void lcd_control_temperature_preheat_material1_settings_menu() { _lcd_control_temperature_preheat_settings_menu(0); }
-
-  /**
-   *
-   * "Temperature" > "Preheat Material 2 conf" submenu
-   *
-   */
   void lcd_control_temperature_preheat_material2_settings_menu() { _lcd_control_temperature_preheat_settings_menu(1); }
-
+  void lcd_control_temperature_preheat_material3_settings_menu() { _lcd_control_temperature_preheat_settings_menu(2); }
+  void lcd_control_temperature_preheat_material4_settings_menu() { _lcd_control_temperature_preheat_settings_menu(3); }
+  void lcd_control_temperature_preheat_material5_settings_menu() { _lcd_control_temperature_preheat_settings_menu(4); }
+  void lcd_control_temperature_preheat_material6_settings_menu() { _lcd_control_temperature_preheat_settings_menu(5); }
+  void lcd_control_temperature_preheat_material7_settings_menu() { _lcd_control_temperature_preheat_settings_menu(6); }
 
   /**
    *
@@ -5156,3 +5611,4 @@ void lcd_reset_alert_level() { lcd_status_message_level = 0; }
 #endif
 
 #endif // ULTRA_LCD
+
