@@ -48,15 +48,18 @@
 // Limit Switches
 #define X_MIN_PIN           3  //Confirmed Labeled X- //PWM3 PE5
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)    
-  #define X_MAX_PIN        -1 //Confirmed Labeled X+ //PWM2 PE4 
+  #undef X_MAX_PIN             //Confirmed Labeled X+ //PWM2 PE4 
+  #undef FIL_RUNOUT_PIN
   #define FIL_RUNOUT_PIN    2
 #else
   #define X_MAX_PIN         2  //Confirmed Labeled X+ //PWM2 PE4
 #endif
 #define Y_MIN_PIN          14  //Confirmed Labeled Y- //USART3_TX PJ1
-#define Y_MAX_PIN          15  //Confirmed Labeled Y+ //USART3_RX PJ0
+#undef Y_MAX_PIN
+//#define Y_MAX_PIN          15  //Confirmed Labeled Y+ //USART3_RX PJ0
 #define Z_MIN_PIN          18  //Confirmed Labeled Z- //USART1_TX PD3
-#define Z_MAX_PIN          19  //Confirmed Labeled Z+ //USART1_RX PD2
+#undef Z_MAX_PIN
+//#define Z_MAX_PIN          19  //Confirmed Labeled Z+ //USART1_RX PD2
 
 // Z Probe (when not Z_MIN_PIN)
 #ifndef Z_MIN_PROBE_PIN

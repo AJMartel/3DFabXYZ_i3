@@ -361,9 +361,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
 // Electron
-   #define  DEFAULT_Kp 29.12
-   #define  DEFAULT_Ki 3.22
-   #define  DEFAULT_Kd 65.83
+   #define  DEFAULT_Kp 17.52
+   #define  DEFAULT_Ki 1.05
+   #define  DEFAULT_Kd 73.18
 
 // Ultimaker
   //#define  DEFAULT_Kp 22.2
@@ -722,6 +722,7 @@
 #define X_PROBE_OFFSET_FROM_EXTRUDER 21  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 61  // Y offset: -front +behind [the nozzle]
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_RADIUS (18/2)            // SN04 Diameter is 18mm
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 7500
@@ -953,13 +954,13 @@
 
   // Set the number of grid points per dimension.
   #define GRID_MAX_POINTS_X 3
-  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+  #define GRID_MAX_POINTS_Y 4
 
   // Set the boundaries for probing (where the probe can reach).
   #define LEFT_PROBE_BED_POSITION (X_PROBE_OFFSET_FROM_EXTRUDER + X_MIN_POS)   //AxMod 0   //Ori -10
   #define RIGHT_PROBE_BED_POSITION (X_MAX_POS - X_PROBE_OFFSET_FROM_EXTRUDER)  //AxMod 190 //Ori 175
   #define FRONT_PROBE_BED_POSITION (Y_PROBE_OFFSET_FROM_EXTRUDER + Y_MIN_POS)  //AxMod -70 //Ori -10
-  #define BACK_PROBE_BED_POSITION (Y_MAX_POS - Y_PROBE_OFFSET_FROM_EXTRUDER)   //AxMod 140 //Ori 150
+  #define BACK_PROBE_BED_POSITION (Y_MAX_POS - Z_PROBE_RADIUS)                 //AxMod 140 //Ori 150 //275
 
   // The Z probe minimum outer margin (to validate G29 parameters).
   #define MIN_PROBE_EDGE 10
@@ -1227,9 +1228,9 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+#define NOZZLE_PARK_FEATURE
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
-  #ifndef
+  #ifndef NOZZLE_PARK_FEATURE
     #define NOZZLE_PARK_FEATURE
   #endif
 #endif

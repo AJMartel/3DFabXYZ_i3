@@ -579,7 +579,7 @@
   //#define LONG_FILENAME_HOST_SUPPORT
 
   // Enable this option to scroll long filenames in the SD card menu
-  //#define SCROLL_LONG_FILENAMES
+  #define SCROLL_LONG_FILENAMES
 
   /**
    * This option allows you to abort SD printing when any endstop is triggered.
@@ -879,7 +879,7 @@
 #define ADVANCED_PAUSE_FEATURE
 
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
-  #ifndef
+  #ifndef ADVANCED_PAUSE_FEATURE
     #define ADVANCED_PAUSE_FEATURE
   #endif
 #endif
