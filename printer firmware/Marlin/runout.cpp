@@ -21,19 +21,41 @@
  */
 
 /**
- * ZRIB V2.0 pin assignments
+ * runout.cpp - Runout sensor support
  */
 
-#define ZRIB_V20_D6_PIN 6
-#define ZRIB_V20_D9_PIN 9
-#define RAMPS_D9_PIN         ZRIB_V20_D6_PIN
-#define ORIG_E0_AUTO_FAN_PIN ZRIB_V20_D9_PIN
-#define ORIG_E1_AUTO_FAN_PIN ZRIB_V20_D9_PIN
-#define ORIG_E2_AUTO_FAN_PIN ZRIB_V20_D9_PIN
-#define ORIG_E3_AUTO_FAN_PIN ZRIB_V20_D9_PIN
+#include "MarlinConfig.h"
 
-#ifndef FILWIDTH_PIN
-  #define FILWIDTH_PIN 11   // Analog Input
-#endif
+#if ENABLED(FILAMENT_RUNOUT_SENSOR)
 
-#include "pins_MKS_GEN_13.h"
+#include "runout.h"
+
+FilamentRunoutSensor runout;
+
+bool FilamentRunoutSensor::filament_ran_out; // = false
+uint8_t FilamentRunoutSensor::runout_count; // = 0
+
+void FilamentRunoutSensor::setup() {
+
+  #if ENABLED(FIL_RUNOUT_PULLUP)
+    #define INIT_RUNOUT_PIN(P) SET_INPUT_PULLUP(P)
+  #else
+    #define INIT_RUNOUT_PIN(P) SET_INPUT(P)
+  #endif
+
+  INIT_RUNOUT_PIN(FIL_RUNOUT_PIN);
+  #if NUM_RUNOUT_SENSORS > 1
+    INIT_RUNOUT_PIN(FIL_RUNOUT2_PIN);
+    #if NUM_RUNOUT_SENSORS > 2
+      INIT_RUNOUT_PIN(FIL_RUNOUT3_PIN);
+      #if NUM_RUNOUT_SENSORS > 3
+        INIT_RUNOUT_PIN(FIL_RUNOUT4_PIN);
+        #if NUM_RUNOUT_SENSORS > 4
+          INIT_RUNOUT_PIN(FIL_RUNOUT5_PIN);
+        #endif
+      #endif
+    #endif
+  #endif
+}
+
+#endif // FILAMENT_RUNOUT_SENSOR

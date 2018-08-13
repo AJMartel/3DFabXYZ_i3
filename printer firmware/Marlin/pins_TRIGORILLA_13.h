@@ -21,19 +21,21 @@
  */
 
 /**
- * ZRIB V2.0 pin assignments
+ * Arduino Mega with RAMPS v1.3 for Anycubic
  */
 
-#define ZRIB_V20_D6_PIN 6
-#define ZRIB_V20_D9_PIN 9
-#define RAMPS_D9_PIN         ZRIB_V20_D6_PIN
-#define ORIG_E0_AUTO_FAN_PIN ZRIB_V20_D9_PIN
-#define ORIG_E1_AUTO_FAN_PIN ZRIB_V20_D9_PIN
-#define ORIG_E2_AUTO_FAN_PIN ZRIB_V20_D9_PIN
-#define ORIG_E3_AUTO_FAN_PIN ZRIB_V20_D9_PIN
-
-#ifndef FILWIDTH_PIN
-  #define FILWIDTH_PIN 11   // Analog Input
+#ifndef BOARD_NAME
+  #define BOARD_NAME "Anycubic RAMPS 1.3"
 #endif
 
-#include "pins_MKS_GEN_13.h"
+#define IS_RAMPS_EFB
+#define RAMPS_D9_PIN         44
+#define FAN2_PIN              9
+#define ORIG_E0_AUTO_FAN_PIN  9
+
+#include "pins_RAMPS_13.h"
+
+#undef E1_STEP_PIN
+#undef E1_DIR_PIN
+#undef E1_ENABLE_PIN
+#undef E1_CS_PIN
