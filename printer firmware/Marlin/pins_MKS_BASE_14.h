@@ -47,8 +47,8 @@
 
 // Limit Switches
 #define X_MIN_PIN           3  //Confirmed Labeled X- //PWM3 PE5
-#if ENABLED(FILAMENT_RUNOUT_SENSOR)    
-  #undef X_MAX_PIN             //Confirmed Labeled X+ //PWM2 PE4 
+#if ENABLED(FILAMENT_RUNOUT_SENSOR)
+  #undef X_MAX_PIN             //Confirmed Labeled X+ //PWM2 PE4
   #undef FIL_RUNOUT_PIN
   #define FIL_RUNOUT_PIN    2
 #else
@@ -160,7 +160,7 @@
   #endif
 #endif
 
-// Průša i3 MK2 Multiplexer Support
+// Pru�a i3 MK2 Multiplexer Support
 #ifndef E_MUX0_PIN
   #define E_MUX0_PIN 40   // Z_CS_PIN  //D40 PG1
 #endif
@@ -412,3 +412,4 @@
   #define BTN_ENC            -1
   // pin 29 N/C
 #endif // ZONESTAR_LCD
+

@@ -20,25 +20,21 @@
  *
  */
 
-#ifndef HEX_PRINT_ROUTINES_H
-#define HEX_PRINT_ROUTINES_H
+/**
+ * emergency_parser.cpp - Intercept special commands directly in the serial stream
+ */
 
-#include <stdint.h>
+#include "MarlinConfig.h"
 
-//
-// Utility functions to create and print hex strings as nybble, byte, and word.
-//
+#if ENABLED(EMERGENCY_PARSER)
 
-inline char hex_nybble(const uint8_t n) {
-  return (n & 0xF) + ((n & 0xF) < 10 ? '0' : 'A' - 10);
-}
-char* hex_byte(const uint8_t b);
-char* hex_word(const uint16_t w);
-char* hex_address(const void * const w);
+#include "emergency_parser.h"
 
-void print_hex_nybble(const uint8_t n);
-void print_hex_byte(const uint8_t b);
-void print_hex_word(const uint16_t w);
-void print_hex_address(const void * const w);
+// Static data members
+bool EmergencyParser::killed_by_M112; // = false
+EmergencyParser::State EmergencyParser::state; // = EP_RESET
 
-#endif // HEX_PRINT_ROUTINES_H
+// Global instance
+EmergencyParser emergency_parser;
+
+#endif // EMERGENCY_PARSER
